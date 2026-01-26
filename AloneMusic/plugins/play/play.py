@@ -61,8 +61,8 @@ async def delete_after_delay(msg):
 @app.on_message(
     filters.command(
         [
-            "play",
-            "vplay",
+            "play", "oynat",
+            "vplay", "voynat",
             "cplay",
             "cvplay",
             "playforce",
