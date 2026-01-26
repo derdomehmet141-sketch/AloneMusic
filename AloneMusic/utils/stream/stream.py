@@ -1,11 +1,3 @@
-#
-# Copyright (C) 2021-2022 by TheAloneteam@Github, < https://github.com/TheAloneTeam >.
-# This file is part of < https://github.com/TheAloneTeam/AloneMusic > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TheAloneTeam/AloneMusic/blob/master/LICENSE >
-#
-# All rights reserved.
-
 import os
 from random import randint
 from typing import Union
@@ -41,6 +33,7 @@ async def stream(
         return
     if forceplay:
         await Alone.force_stop_stream(chat_id)
+
     if streamtype == "playlist":
         msg = f"{_['play_19']}\n\n"
         count = 0
@@ -106,13 +99,11 @@ async def stream(
                     "video" if video else "audio",
                     forceplay=forceplay,
                 )
-                img = await get_thumb(vidid)
+                # Fotoğraf atmak yerine sadece metin mesajı gönder
                 button = stream_markup(_, chat_id)
-                run = await app.send_photo(
+                run = await app.send_message(
                     original_chat_id,
-                    photo=img,
-                    has_spoiler=True,
-                    caption=_["stream_1"].format(
+                    text=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{vidid}",
                         title[:23],
                         duration_min,
@@ -133,13 +124,12 @@ async def stream(
                 car = msg
             carbon = await Carbon.generate(car, randint(100, 10000000))
             upl = close_markup(_)
-            return await app.send_photo(
+            return await app.send_message(
                 original_chat_id,
-                has_spoiler=True,
-                photo=carbon,
-                caption=_["play_21"].format(position, link),
+                text=_["play_21"].format(position, link),
                 reply_markup=upl,
             )
+
     elif streamtype == "youtube":
         link = result["link"]
         vidid = result["vidid"]
@@ -154,6 +144,7 @@ async def stream(
         except Exception as ex:
             print(ex)
             raise AssistantErr(_["play_14"])
+        
         if await is_active_chat(chat_id):
             await put_queue(
                 chat_id,
@@ -195,13 +186,10 @@ async def stream(
                 "video" if video else "audio",
                 forceplay=forceplay,
             )
-            img = await get_thumb(vidid)
             button = stream_markup(_, chat_id)
-            run = await app.send_photo(
+            run = await app.send_message(
                 original_chat_id,
-                photo=img,
-                has_spoiler=True,
-                caption=_["stream_1"].format(
+                text=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{vidid}",
                     title[:23],
                     duration_min,
@@ -211,6 +199,7 @@ async def stream(
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "stream"
+
     elif streamtype == "soundcloud":
         file_path = result["filepath"]
         title = result["title"]
@@ -251,17 +240,16 @@ async def stream(
                 forceplay=forceplay,
             )
             button = stream_markup(_, chat_id)
-            run = await app.send_photo(
+            run = await app.send_message(
                 original_chat_id,
-                photo=config.SOUNCLOUD_IMG_URL,
-                has_spoiler=True,
-                caption=_["stream_1"].format(
+                text=_["stream_1"].format(
                     config.SUPPORT_CHAT, title[:23], duration_min, user_name
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
+
     elif streamtype == "telegram":
         file_path = result["path"]
         link = result["link"]
@@ -306,11 +294,9 @@ async def stream(
             if video:
                 await add_active_video_chat(chat_id)
             button = stream_markup(_, chat_id)
-            run = await app.send_photo(
+            run = await app.send_message(
                 original_chat_id,
-                has_spoiler=True,
-                photo=config.TELEGRAM_VIDEO_URL if video else config.TELEGRAM_AUDIO_URL,
-                caption=_["stream_1"].format(link, title[:23], duration_min, user_name),
+                text=_["stream_1"].format(link, title[:23], duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
@@ -368,11 +354,9 @@ async def stream(
             )
             img = await get_thumb(vidid)
             button = stream_markup(_, chat_id)
-            run = await app.send_photo(
+            run = await app.send_message(
                 original_chat_id,
-                photo=img,
-                has_spoiler=True,
-                caption=_["stream_1"].format(
+                text=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{vidid}",
                     title[:23],
                     duration_min,
@@ -424,11 +408,9 @@ async def stream(
                 forceplay=forceplay,
             )
             button = stream_markup(_, chat_id)
-            run = await app.send_photo(
+            run = await app.send_message(
                 original_chat_id,
-                photo=config.STREAM_IMG_URL,
-                has_spoiler=True,
-                caption=_["stream_2"].format(user_name),
+                text=_["stream_2"].format(user_name),
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
