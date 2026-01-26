@@ -342,18 +342,18 @@ class Call(PyTgCalls):
                         [
                             [
                                 InlineKeyboardButton(
-                                    "✙ ʌᴅᴅ ϻє вᴧʙʏ ✙",
+                                    "✙ beni ekle Bebek ✙",
                                     url=f"https://t.me/{app.username}?startgroup=true",
                                 ),
                                 InlineKeyboardButton(
-                                    "⋞ ᴄʟᴏsє ⋟", callback_data="close_message"
+                                    "⋞ kapat ⋟", callback_data="close_message"
                                 ),
                             ]
                         ]
                     )
                     await app.send_message(
                         chat_id,
-                        "**🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!**",
+                        "**🎵 keyifli bir an geçir örnek /oynat taladro !!**",
                         reply_markup=buttons,
                     )
                 except:
