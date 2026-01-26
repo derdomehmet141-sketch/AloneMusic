@@ -1,5 +1,5 @@
 from pyrogram.types import InlineKeyboardButton
-from HasiiMusic import app
+from AloneMusic import app
 
 
 def stream_markup_timer(_, chat_id, played, dur):
