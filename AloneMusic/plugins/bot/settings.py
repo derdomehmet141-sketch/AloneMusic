@@ -33,7 +33,7 @@ from config import BANNED_USERS, OWNER_ID
 
 
 @app.on_message(
-    filters.command(["settings", "setting"]) & filters.group & ~BANNED_USERS
+    filters.command(["settings", "setting", "ayarlar"]) & filters.group & ~BANNED_USERS
 )
 @language
 async def settings_mar(client, message: Message, _):
@@ -48,7 +48,7 @@ async def settings_mar(client, message: Message, _):
 @languageCB
 async def settings_cb(client, CallbackQuery, _):
     try:
-        await CallbackQuery.answer(_["set_cb_5"])
+        await CallbackQuery.answer("Ayarlar açılıyor...")
     except:
         pass
     buttons = setting_markup(_)
@@ -70,13 +70,13 @@ async def show_bot_info(c: app, q: CallbackQuery):
     await x.delete()
     txt = f"""💌 ᴘɪɴɢ ᴘᴏɴɢ ʙᴀʙʏ...
 
-• ᴅᴀᴛᴀʙᴀsᴇ: ᴏɴʟɪɴᴇ
-• ʏᴏᴜᴛᴜʙᴇ ᴀᴘɪ: ʀᴇsᴘᴏɴsɪᴠᴇ
-• ʙᴏᴛ sᴇʀᴠᴇʀ: ʀᴜɴɴɪɴɢ sᴍᴏᴏᴛʜʟʏ
-• ʀᴇsᴘᴏɴsᴇ ᴛɪᴍᴇ: ᴏᴘᴛɪᴍᴀʟ
+• ᴠᴇʀɪᴛᴀʙᴀɴı: ᴄᴇᴠɪʀɪᴍɪᴄɪ
+• ʏᴏᴜᴛᴜʙᴇ ᴀᴘɪ: ʏᴀɴıᴛ ᴠᴇʀɪʏᴏʀ
+• ʙᴏᴛ sᴜɴᴜᴄᴜsᴜ: sᴏʀᴜɴsᴜᴢ ᴄᴀʟısɪʏᴏʀ
+• ʏᴀɴıᴛ sᴜʀᴇsɪ: ᴏᴘᴛɪᴍᴀʟ
 • ᴀᴘɪ ᴘɪɴɢ: {delta_ping * 1000:.3f} ms   
 
-• ᴇᴠᴇʀʏᴛʜɪɴɢ ʟᴏᴏᴋs ɢᴏᴏᴅ!
+• ʜᴇʀ sᴇʏ ʏᴏʟᴜɴᴅᴀ ɢᴏʀᴜɴᴜʏᴏʀ!
 """
     await q.answer(txt, show_alert=True)
     return
@@ -86,19 +86,19 @@ async def show_bot_info(c: app, q: CallbackQuery):
 @languageCB
 async def support(client, CallbackQuery, _):
     await CallbackQuery.edit_message_text(
-        text="ʜᴇʀᴇ ᴀʀᴇ ꜱᴏᴍᴇ ɪᴍᴘᴏʀᴛᴀɴᴛ ʟɪɴᴋꜱ.",
+        text="İşte bazı önemli bağlantılar.",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(text="ᴅᴇᴠs", user_id=config.OWNER_ID),
+                    InlineKeyboardButton(text="ɢᴇʟɪsᴛɪʀɪᴄɪʟᴇʀ", user_id=config.OWNER_ID),
                 ],
                 [
-                    InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url=config.SUPPORT_CHAT),
-                    InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=config.SUPPORT_CHANNEL),
+                    InlineKeyboardButton(text="ᴅᴇsᴛᴇᴋ", url=config.SUPPORT_CHAT),
+                    InlineKeyboardButton(text="ᴋᴀɴᴀʟ", url=config.SUPPORT_CHANNEL),
                 ],
                 [
                     InlineKeyboardButton(
-                        text="ʙᴀᴄᴋ", callback_data="settingsback_helper"
+                        text="ɢᴇʀɪ", callback_data="settingsback_helper"
                     )
                 ],
             ]
@@ -138,28 +138,28 @@ async def without_Admin_rights(client, CallbackQuery, _):
     command = CallbackQuery.matches[0].group(1)
     if command == "SEARCHANSWER":
         try:
-            return await CallbackQuery.answer(_["setting_2"], show_alert=True)
+            return await CallbackQuery.answer("Arama modunu buradan değiştirebilirsiniz.", show_alert=True)
         except:
             return
     if command == "PLAYMODEANSWER":
         try:
-            return await CallbackQuery.answer(_["setting_5"], show_alert=True)
+            return await CallbackQuery.answer("Oynatma modunu buradan ayarlayabilirsiniz.", show_alert=True)
         except:
             return
     if command == "PLAYTYPEANSWER":
         try:
-            return await CallbackQuery.answer(_["setting_6"], show_alert=True)
+            return await CallbackQuery.answer("Kimlerin müzik çalabileceğini belirleyin.", show_alert=True)
         except:
             return
     if command == "AUTHANSWER":
         try:
-            return await CallbackQuery.answer(_["setting_3"], show_alert=True)
+            return await CallbackQuery.answer("Yetkili kullanıcı ayarlarını yönetin.", show_alert=True)
         except:
             return
     if command == "VOTEANSWER":
         try:
             return await CallbackQuery.answer(
-                _["setting_8"],
+                "Oylama modunu buradan aktif veya deaktif edebilirsiniz.",
                 show_alert=True,
             )
         except:
@@ -168,14 +168,14 @@ async def without_Admin_rights(client, CallbackQuery, _):
         current = await get_upvote_count(CallbackQuery.message.chat.id)
         try:
             return await CallbackQuery.answer(
-                _["setting_9"].format(current),
+                f"Şu anki gerekli oy sayısı: {current}",
                 show_alert=True,
             )
         except:
             return
     if command == "PM":
         try:
-            await CallbackQuery.answer(_["set_cb_2"], show_alert=True)
+            await CallbackQuery.answer("Oynatma Ayarları", show_alert=True)
         except:
             pass
         playmode = await get_playmode(CallbackQuery.message.chat.id)
@@ -196,7 +196,7 @@ async def without_Admin_rights(client, CallbackQuery, _):
         buttons = playmode_users_markup(_, Direct, Group, Playtype)
     if command == "AU":
         try:
-            await CallbackQuery.answer(_["set_cb_1"], show_alert=True)
+            await CallbackQuery.answer("Yetkili Ayarları", show_alert=True)
         except:
             pass
         is_non_admin = await is_nonadmin_chat(CallbackQuery.message.chat.id)
@@ -222,14 +222,13 @@ async def addition(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     mode = callback_data.split(None, 1)[1]
     if not await is_skipmode(CallbackQuery.message.chat.id):
-        return await CallbackQuery.answer(_["setting_10"], show_alert=True)
+        return await CallbackQuery.answer("Önce oylama modunu aktif etmelisiniz!", show_alert=True)
     current = await get_upvote_count(CallbackQuery.message.chat.id)
     if mode == "M":
         final = current - 2
-        print(final)
         if final == 0:
             return await CallbackQuery.answer(
-                _["setting_11"],
+                "Daha fazla düşüremezsiniz.",
                 show_alert=True,
             )
         if final <= 2:
@@ -237,10 +236,9 @@ async def addition(client, CallbackQuery, _):
         await set_upvotes(CallbackQuery.message.chat.id, final)
     else:
         final = current + 2
-        print(final)
         if final == 17:
             return await CallbackQuery.answer(
-                _["setting_12"],
+                "Daha fazla artıramazsınız.",
                 show_alert=True,
             )
         if final >= 15:
@@ -283,7 +281,7 @@ async def playmode_ans(client, CallbackQuery, _):
         buttons = playmode_users_markup(_, Direct, Group, Playtype)
     if command == "MODECHANGE":
         try:
-            await CallbackQuery.answer(_["set_cb_3"], show_alert=True)
+            await CallbackQuery.answer("Mod Değiştirildi", show_alert=True)
         except:
             pass
         playmode = await get_playmode(CallbackQuery.message.chat.id)
@@ -306,7 +304,7 @@ async def playmode_ans(client, CallbackQuery, _):
         buttons = playmode_users_markup(_, Direct, Group, Playtype)
     if command == "PLAYTYPECHANGE":
         try:
-            await CallbackQuery.answer(_["set_cb_3"], show_alert=True)
+            await CallbackQuery.answer("Çalma Türü Değiştirildi", show_alert=True)
         except:
             pass
         playty = await get_playtype(CallbackQuery.message.chat.id)
@@ -343,17 +341,17 @@ async def authusers_mar(client, CallbackQuery, _):
         _authusers = await get_authuser_names(CallbackQuery.message.chat.id)
         if not _authusers:
             try:
-                return await CallbackQuery.answer(_["setting_4"], show_alert=True)
+                return await CallbackQuery.answer("Yetkili kullanıcı listesi boş.", show_alert=True)
             except:
                 return
         else:
             try:
-                await CallbackQuery.answer(_["set_cb_4"], show_alert=True)
+                await CallbackQuery.answer("Yetkili Listesi Yükleniyor...", show_alert=True)
             except:
                 pass
             j = 0
-            await CallbackQuery.edit_message_text(_["auth_6"])
-            msg = _["auth_7"].format(CallbackQuery.message.chat.title)
+            await CallbackQuery.edit_message_text("Yetkili Kullanıcılar listeleniyor...")
+            msg = f"✨ **{CallbackQuery.message.chat.title}** Yetkili Listesi:\n\n"
             for note in _authusers:
                 _note = await get_authuser(CallbackQuery.message.chat.id, note)
                 user_id = _note["auth_user_id"]
@@ -365,14 +363,14 @@ async def authusers_mar(client, CallbackQuery, _):
                     j += 1
                 except:
                     continue
-                msg += f"{j}➤ {user}[<code>{user_id}</code>]\n"
-                msg += f"   {_['auth_8']} {admin_name}[<code>{admin_id}</code>]\n\n"
+                msg += f"{j}➤ {user} [<code>{user_id}</code>]\n"
+                msg += f"   Ekleyen: {admin_name} [<code>{admin_id}</code>]\n\n"
             upl = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text=_["BACK_BUTTON"], callback_data="AU"),
+                        InlineKeyboardButton(text="ɢᴇʀɪ", callback_data="AU"),
                         InlineKeyboardButton(
-                            text=_["CLOSE_BUTTON"],
+                            text="ᴋᴀᴘᴀᴛ",
                             callback_data="close",
                         ),
                     ]
@@ -383,7 +381,7 @@ async def authusers_mar(client, CallbackQuery, _):
             except MessageNotModified:
                 return
     try:
-        await CallbackQuery.answer(_["set_cb_3"], show_alert=True)
+        await CallbackQuery.answer("Ayarlar güncellendi.", show_alert=True)
     except:
         pass
     if command == "AUTH":
@@ -405,9 +403,8 @@ async def authusers_mar(client, CallbackQuery, _):
 @app.on_callback_query(filters.regex("VOMODECHANGE") & ~BANNED_USERS)
 @ActualAdminCB
 async def vote_change(client, CallbackQuery, _):
-    CallbackQuery.matches[0].group(1)
     try:
-        await CallbackQuery.answer(_["set_cb_3"], show_alert=True)
+        await CallbackQuery.answer("Oylama modu değiştirildi.", show_alert=True)
     except:
         pass
     mod = None
