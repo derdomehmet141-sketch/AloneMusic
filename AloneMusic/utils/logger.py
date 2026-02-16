@@ -1,18 +1,12 @@
 from pyrogram.enums import ParseMode
-
-from AloneMusic import app
-from AloneMusic.utils.database import is_on_off
-from config import LOGGER_ID
-
-#############################################
 from AloneMusic import app
 from AloneMusic.utils.database import (
-    get_served_chats,
     is_on_off,
+    get_served_chats,
+    get_active_chats,
+    get_active_video_chats
 )
-from AloneMusic.utils.database import get_active_chats, get_active_video_chats
-from config import LOG, LOGGER_ID
-
+from config import LOGGER_ID
 
 async def play_logs(message, streamtype):
     chat_id = message.chat.id
