@@ -49,7 +49,7 @@ Aktif Ses: {aktifseslisayısı}  ❄️  Aktif Video: {aktifvideosayısı}"""
                     f"{logger_text}",
                     disable_web_page_preview=True,
                 )
-                await app.set_chat_title(LOGGER_ID, f"AKTİF SES - {aktifseslisayısı}")
+                await app.set_chat_title(LOGGER_ID, f"ᴀᴋᴛɪ̇ꜰ ꜱᴇꜱ - {aktifseslisayısı}")
             except:
                 pass
         return
