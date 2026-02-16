@@ -1,57 +1,62 @@
+#
+# Copyright (C) 2021-2022 by TheAloneteam@Github, < https://github.com/TheAloneTeam >.
+#
+# This file is part of < https://github.com/TheAloneTeam/AloneMusic > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/TheAloneTeam/AloneMusic/blob/master/LICENSE >
+#
+# All rights reserved.
+
+import os
+
 from pyrogram.enums import ParseMode
+
 from AloneMusic import app
 from AloneMusic.utils.database import is_on_off
-from config import LOGGER_ID, LOG  # LOG ve LOGGER_ID'nin doğru şekilde import edildiğinden emin olun
+from config import LOGGER_ID
 
-#############################################
-from AloneMusic import app
-from AloneMusic.utils.database import (
-    get_served_chats,
-    is_on_off,
-)
-from AloneMusic.utils.database import get_active_chats, get_active_video_chats
+
+async def send_large_error(trace, caption, filename):
+    with open(filename, "w") as f:
+        f.write(trace)
+    try:
+        await app.send_document(
+            chat_id=LOGGER_ID,
+            document=filename,
+            caption=caption,
+            parse_mode=ParseMode.HTML,
+        )
+    except Exception:
+        pass
+    try:
+        os.remove(filename)
+    except Exception:
+        pass
 
 
 async def play_logs(message, streamtype):
-    chat_id = message.chat.id
-    sayı = await app.get_chat_members_count(chat_id)
-    toplamgrup = len(await get_served_chats())
-    aktifseslisayısı = len(await get_active_chats())
-    aktifvideosayısı = len(await get_active_video_chats())
+    if await is_on_off(2):
+        logger_text = f"""<blockquote>
+<b>{app.mention} ᴘʟᴀʏ ʟᴏɢ</b>
 
-    # LOG değişkeni True ise loglama yapılacak
-    if await is_on_off(LOG):  
-        if message.chat.username:
-            chatusername = f"@{message.chat.username}"
-        else:
-            chatusername = "Gizli Grup"
-        logger_text = f"""
+<b>ᴄʜᴀᴛ ɪᴅ :</b> <code>{message.chat.id}</code>
+<b>ᴄʜᴀᴛ ɴᴀᴍᴇ :</b> {message.chat.title}
+<b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}
 
-Grup: {message.chat.title} [`{message.chat.id}`]
-Üye Sayısı:➜ {sayı}
-Kullanıcı: {message.from_user.mention}
-Kullanıcı Adı: @{message.from_user.username}
-Kullanıcı ID: `{message.from_user.id}`
-Grup Linki: {chatusername}
-Sorgu: {message.text}
+<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>
+<b>ɴᴀᴍᴇ :</b> {message.from_user.mention}
+<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}
 
-🌹🌹🌹🌹🌹🌹🌹🌹🌹
-
-Toplam Grup Sayısı:➜  {toplamgrup}
-
-Aktif Ses: {aktifseslisayısı}  ❄️  Aktif Video: {aktifvideosayısı}"""
-        
-        # Eğer grup LOGGER_ID değilse, log gönderilir
+<b>ǫᴜᴇʀʏ :</b> {message.text.split(None, 1)[1]}
+<b>sᴛʀᴇᴀᴍᴛʏᴘᴇ :</b> {streamtype}</blockquote>"""
         if message.chat.id != LOGGER_ID:
             try:
                 await app.send_message(
-                    LOGGER_ID,
-                    f"{logger_text}",
+                    chat_id=LOGGER_ID,
+                    text=logger_text,
+                    parse_mode=ParseMode.HTML,
                     disable_web_page_preview=True,
                 )
-                # Güncel aktif ses sayısını chat başlığına ekleyin
-                await app.set_chat_title(LOGGER_ID, f"AKTİF SES - {aktifseslisayısı}")
-            except Exception as e:
-                # Hata durumunda daha açıklayıcı loglama
-                print(f"Hata oluştu: {e}")
+            except:
+                pass
         return
