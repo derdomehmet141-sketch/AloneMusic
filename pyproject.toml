@@ -61,7 +61,16 @@ dependencies = [
   "py-yt-search==0.5.7",
   "spotipy>=2.24.0",
   "prettytable>=3.12.0",
-  "openai>=1.40.0"
+  "openai>=1.40.0",
+  
+  # Yeni eklenen bağımlılıklar (Eksik olanlar)
+  "bing-image-downloader",  # Bing resim indirme
+  "SafoneAPI",              # SafoneAPI desteği
+  "googlesearch-python",    # Google arama kütüphanesi
+  "uvloop",                 # Asenkron I/O event loop
+  "gtts",                   # Google Text-to-Speech (Metinden sese dönüştürme)
+  "numpy",                  # Sayısal işlemler için
+  "pykeyboard",             # Klavye kontrolü için
 ]
 
 [tool.setuptools.packages.find]
