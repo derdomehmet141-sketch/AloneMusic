@@ -80,8 +80,7 @@ def stream_markup_timer(_, chat_id, played, dur):
         ],
         [
             InlineKeyboardButton(
-                text=bar,  # Bar altta olacak şekilde butona eklendi
-                url=f"https://t.me/{app.username}?startgroup=true",  # İstediğiniz URL burada
+                text=bar,  
             )
         ],
         [
