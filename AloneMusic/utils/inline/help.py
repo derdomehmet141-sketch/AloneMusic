@@ -1,18 +1,6 @@
-#
-# Copyright (C) 2021-2022 by TheAloneteam@Github, < https://github.com/TheAloneTeam >.
-#
-# This file is part of < https://github.com/TheAloneTeam/AloneMusic > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TheAloneTeam/AloneMusic/blob/master/LICENSE >
-#
-# All rights reserved.
-
 from typing import Union
-
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
 from AloneMusic import app
-
 
 def help_pannel(_, START: Union[bool, int] = None):
     first = [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")]
@@ -34,16 +22,18 @@ def help_pannel(_, START: Union[bool, int] = None):
                     text=_["H_B_2"],
                     callback_data="help_callback hb2",
                 ),
+            ],
+            [
                 InlineKeyboardButton(
                     text=_["H_B_3"],
                     callback_data="help_callback hb3",
                 ),
-            ],
-            [
                 InlineKeyboardButton(
                     text=_["H_B_4"],
                     callback_data="help_callback hb4",
                 ),
+            ],
+            [
                 InlineKeyboardButton(
                     text=_["H_B_5"],
                     callback_data="help_callback hb5",
@@ -58,7 +48,6 @@ def help_pannel(_, START: Union[bool, int] = None):
     )
     return upl
 
-
 def help_back_markup(_):
     upl = InlineKeyboardMarkup(
         [
@@ -71,7 +60,6 @@ def help_back_markup(_):
         ]
     )
     return upl
-
 
 def private_help_panel(_):
     buttons = [
