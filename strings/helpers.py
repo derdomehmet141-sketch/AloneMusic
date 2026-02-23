@@ -1,67 +1,61 @@
 HELP_1 = """
-<b><u>🎧 TEMEL MÜZİK KOMUTLARI</u></b>
+🎶 OYNATMA KOMUTLARI
 
 • /oynat [şarkı adı veya link] — Şarkı oynatır.  
 • /voynat [video adı veya link] — Video oynatır.  
-• /kuyruk — Sıradaki parçaları gösterir.  
-• /song [isim/link] — YouTube'dan şarkı indirir.  
-• /lyrics [şarkı adı] — Şarkı sözlerini bulur.
+• /playforce — Mevcut şarkıyı değiştirir.
+• /vplayforce — Mevcut videoyu değiştirir.
 """
 
 HELP_2 = """
-<b><u>🛠️ YÖNETİCİ KOMUTLARI</u></b>
+⚡ KONTROL KOMUTLARI
 
-• /dur — Şarkıyı duraklatır.  
-• /devam — Şarkıyı devam ettirir.  
-• /atla — Sonraki şarkıya geçer.  
-• /durdur — Çalmayı tamamen durdurur.  
-• /dongu [1-10] — Aynı şarkıyı tekrarlatır.  
-• /blacklistchat [id] — Grubu kara listeye alır.  
-• /whitelistchat [id] — Grubu beyaz listeye alır.  
-• /blacklistedchat — Kara listedeki grupları gösterir.
+• /durdur — Çalmayı duraklatır
+• /devam — Çalmayı devam ettirir
+• /son — Çalmayı bitirir
+• /atla — Sonraki şarkıya geçer
+• /ileri — Şarkıyı ileri alır
+• /gerial — Şarkıyı geri alır
+• /karistir — Sıradaki parçaları karıştırır
+• /tekrarla — Şarkıyı tekrarlar
+• /reload — Admin önbelleğini yeniler
 """
 
 HELP_3 = """
-<b><u>🌍 GENEL KOMUTLAR</u></b>
+🏷️ ETİKETLEME KOMUTLARI
 
-• /start — Botu başlatır.  
-• /help — Yardım menüsünü gösterir.  
-• /ping — Gecikme süresini ölçer.  
-• /stats — Bot istatistiklerini gösterir.  
-• /id — Kullanıcı veya grup ID’sini gösterir.
+• /utag — Toplu etiket arar
+• /tag — Tek tek etiketler
+• /cancel — Etiketlemeyi durdurur
 """
 
 HELP_4 = """
-<b><u>💎 EKSTRA ÖZELLİKLER</u></b>
+🎮 OYUN KOMUTLARI
 
-• /broadcast [mesaj] — Botun bulunduğu tüm gruplara mesaj yollar. (Sahip)  
-• /maintenance [on/off] — Botu bakım moduna alır.  
-• /gban [kullanıcı] — Kullanıcıyı tüm gruplarda yasaklar.  
-• /ungban [kullanıcı] — Global yasağı kaldırır.  
-• /logs — Günlük log kayıtlarını gösterir.  
-• /maviduyuru — En son <b>Mavi Ekip</b> duyurularını gösterir 💙
+• /cash [miktar] [çarpan] — Slot oynar
+• /bcash [miktar] [çarpan] — Basketbol oynar
+• /fcash [miktar] [çarpan] — Futbol oynar
+• /bakiye — Bakiyenizi gösterir
+• /gunluk — Günlük bonus alırsınız
+• /zenginler — En zengin kullanıcıları listeler
 """
 
 HELP_5 = """
-<b><u>🍂 Canım sevgilim </u></b>
+🌐 AĞ ÖZELLİKLERİ
 
-• /bakiye — Coin bakiyeni gösterir.  
-• /hediyeler — Tüm hediyeleri listeler.  
-• /hediyegonder @kullanıcı 🌹 — Hediye gönderir.  
-• /hediyem — Aldığın hediyeleri gösterir.  
-• /hikaye İsim1 İsim2 — Aşk hikayesi oluşturur.  
-• /liderlik — En zengin kullanıcıları listeler.
-
-botun olduğu herhangi bir grupta aktif oldukça coin kazanırsın
+• /bul — Müzik indirir
+• /vbul — Video indirir
+• /gece — Gece sözü atar
+• /playmode — Paneli açar
+• /coynat — Kanalı bağla
 """
 
 HELP_6 = """
-<b><u>🎀 oyun komutlar </u></b>
+👑 SUDO KOMUTLARI
 
-• /dice — Zar atar.  
-• /dart — Dart atar.  
-• /basket — Basket atışı yapar.  
-• /football — Futbol oynar.  
-• /slot — Slot makinesi çevirir.  
-• /bored — Rastgele etkinlik önerir.
+• /block — Kullanıcıyı engeller
+• /unblock — Kullanıcının engelini kaldırır
+• /broadcast — Tüm sohbetlere mesaj yollar
+• /sudo — Sudo kullanıcı ekler
+• /rmsudo — Sudo kullanıcı kaldırır
 """
