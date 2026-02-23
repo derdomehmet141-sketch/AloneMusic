@@ -11,7 +11,7 @@ from AloneMusic import app  # @app dekoratörleri için
 # ----------------- AYARLAR -----------------
 
 COOKIE_URL = "None"  # GitHub repo URL'si
-COOKIE_FILE = "./cookies/example.txt"  # Cookie dosyasının kaydedileceği yol
+COOKIE_FILE = "./cookies/cookies.txt"  # Cookie dosyasının kaydedileceği yol
 DOWNLOAD_PATH = "./downloads"  # İndirme yapılacak yol
 os.makedirs(DOWNLOAD_PATH, exist_ok=True)  # İndirilen dosyaların kaydedileceği klasör
 
