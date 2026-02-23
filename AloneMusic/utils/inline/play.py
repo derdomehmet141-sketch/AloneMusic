@@ -90,7 +90,7 @@ def stream_markup_timer(_, chat_id, played, dur):
                 callback_data=f"ADMIN Stop|{chat_id}",  # Durdurma komutu
             ),
             InlineKeyboardButton(
-                text="",  # Kapatma butonu
+                text="𝗞𝗮𝗽𝗮𝘁",  # Kapatma butonu
                 callback_data="close",  # Kapatma komutu
             ),
             InlineKeyboardButton(
