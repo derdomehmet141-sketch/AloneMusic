@@ -30,6 +30,9 @@ def track_markup(_, videoid, user_id, channel, fplay):
     ]
     return buttons
 
+def time_to_seconds(time_str):
+    minutes, seconds = map(int, time_str.split(":"))
+    return minutes * 60 + seconds
 
 def stream_markup_timer(_, chat_id, played, dur):
     played_sec = time_to_seconds(played)
@@ -80,7 +83,7 @@ def stream_markup_timer(_, chat_id, played, dur):
         ],
         [
             InlineKeyboardButton(
-                text=bar,  
+                text=bar,  # İlerleme çubuğu
             )
         ],
         [
@@ -99,7 +102,6 @@ def stream_markup_timer(_, chat_id, played, dur):
         ]
     ]
     return buttons
-
 
 def stream_markup(_, chat_id):
     buttons = [
