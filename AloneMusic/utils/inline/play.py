@@ -1,4 +1,4 @@
-#
+ #
 # Copyright (C) 2021-2022 by TheAloneteam@Github, < https://github.com/TheAloneTeam >.
 #
 # This file is part of < https://github.com/TheAloneTeam/AloneMusic > project,
@@ -29,10 +29,6 @@ def track_markup(_, videoid, user_id, channel, fplay):
         ],
     ]
     return buttons
-
-def time_to_seconds(time_str):
-    minutes, seconds = map(int, time_str.split(":"))
-    return minutes * 60 + seconds
 
 def stream_markup_timer(_, chat_id, played, dur):
     played_sec = time_to_seconds(played)
